@@ -63,5 +63,24 @@ context('Compra', () => {
       'contain.text',
       'Your order on My Store is complete.'
     )
+
+    // capturar o texto do box
+    cy.get('div.box')
+      .invoke('text')
+      .then((text) => {
+        // filtrar o texto do box para extrair somente o id
+        const id = text.match(/[A-Z][A-Z]+/g)[1]
+
+        // armazenar o id do pedido em um arquivo
+        cy.writeFile('cypress/fixtures/pedido.json', { id })
+      })
+
+    cy.get(".cart_navigation a[href$='history']").click()
+
+    // leitura de um arquivo
+    // obter o id do pedido armazenado
+    cy.readFile('cypress/fixtures/pedido.json').then(({ id }) => {
+      cy.get('tr.first_item td.history_link a').should('contain.text', id)
+    })
   })
 })
