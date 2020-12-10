@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2020-12-10T23:39:37.486Z",
-    "end": "2020-12-10T23:39:56.992Z",
-    "duration": 19506,
+    "start": "2020-12-10T23:41:25.279Z",
+    "end": "2020-12-10T23:41:42.459Z",
+    "duration": 17180,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "160ebfb9-d7b3-4b01-8ea0-851428948b3c",
+      "uuid": "463f9096-9fde-4361-9043-706d532520e7",
       "title": "",
       "fullFile": "cypress/integration/compra.spec.js",
       "file": "cypress/integration/compra.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b45940a4-951a-4ddb-b14f-55793906c275",
+          "uuid": "38bd1657-5548-4f82-be40-62c74a5b2510",
           "title": "Compra",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Efetuar uma compra de produto",
               "fullTitle": "Compra Efetuar uma compra de produto",
               "timedOut": null,
-              "duration": 19426,
+              "duration": 17106,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.backgroundLogin();\ncy.visit('/');\nvar nomeProduto = 'Faded Short Sleeve T-shirts';\ncy.contains(nomeProduto).trigger('mouseover');\ncy.contains(nomeProduto).parent().siblings('div.button-container').children('a').first().click(); // encontra o add to cart e clica\n// validando se o produto foi adicionado ao carrinho com sucesso\ncy.get('.icon-ok').parent().should('contain.text', 'Product successfully added to your shopping cart');\ncy.get('span#layer_cart_product_title').should('contain.text', nomeProduto);\ncy.get(\".button-container a[href$='controller=order']\").click();\ncy.get(\".cart_navigation a[href$='order&step=1']\").click(); // validando se o endereço de entrega é igual ao se cobrança\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'checked', 'checked');\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'name', 'same');\ncy.get(\"button[name='processAddress']\").click();\ncy.get('[type=checkbox]#cgv').check();\ncy.get(\"button[name='processCarrier']\").click();\ncy.get('.bankwire').click();\ncy.get('.cart_navigation button[type=submit]').find('span').contains('I confirm my order').click();\ncy.get('.cheque-indent strong').should('contain.text', 'Your order on My Store is complete.'); // capturar o texto do box\ncy.get('div.box').invoke('text').then(function (text) {\n  // filtrar o texto do box para extrair somente o id\n  var id = text.match(/[A-Z][A-Z]+/g)[1]; // armazenar o id do pedido em um arquivo\n  cy.writeFile('cypress/fixtures/pedido.json', {\n    id: id\n  });\n});\ncy.get(\".cart_navigation a[href$='history']\").click(); // leitura de um arquivo\n// obter o id do pedido armazenado\ncy.readFile('cypress/fixtures/pedido.json').then(function (_ref) {\n  var id = _ref.id;\n  cy.get('tr.first_item td.history_link a').should('contain.text', id);\n});",
               "err": {},
-              "uuid": "dac21645-87bc-44ca-8a13-e0a302ce04c4",
-              "parentUUID": "b45940a4-951a-4ddb-b14f-55793906c275",
+              "uuid": "86c645f3-af59-42c4-863d-c7e78464d734",
+              "parentUUID": "38bd1657-5548-4f82-be40-62c74a5b2510",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "dac21645-87bc-44ca-8a13-e0a302ce04c4"
+            "86c645f3-af59-42c4-863d-c7e78464d734"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 19426,
+          "duration": 17106,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
