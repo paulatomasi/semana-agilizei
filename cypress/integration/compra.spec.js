@@ -2,6 +2,8 @@
 
 context('Compra', () => {
   it('Efetuar uma compra de produto', () => {
+    cy.backgroundLogin()
+
     cy.visit('/')
 
     const nomeProduto = 'Faded Short Sleeve T-shirts'
@@ -28,10 +30,6 @@ context('Compra', () => {
     cy.get(".button-container a[href$='controller=order']").click()
 
     cy.get(".cart_navigation a[href$='order&step=1']").click()
-
-    cy.get('#email').type('paula-agilizei@mail.com')
-    cy.get('#passwd').type('teste123')
-    cy.get('button#SubmitLogin').click()
 
     // validando se o endereço de entrega é igual ao se cobrança
     cy.get('[type=checkbox]#addressesAreEquals').should(
